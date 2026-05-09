@@ -15,26 +15,10 @@ export const Route = createFileRoute("/")({
 });
 
 const pillars = [
-  {
-    n: "01",
-    title: "Generational Health",
-    body: "Mental, spiritual, and physical wellness that helps individuals and families move from instability toward wholeness.",
-  },
-  {
-    n: "02",
-    title: "Generational Wealth",
-    body: "Housing, entrepreneurship, career development, and asset-building pathways that support long-term economic mobility.",
-  },
-  {
-    n: "03",
-    title: "Generational Legacy",
-    body: "Education, strategic civic planning, and leadership development that prepare the next generation to lead.",
-  },
-  {
-    n: "04",
-    title: "Generational Transitions",
-    body: "Support for estates, family life, culture, and life-stage transitions that strengthen families across generations.",
-  },
+  { n: "01", title: "Generational Health", body: "Mental, spiritual, and physical wellness that helps individuals and families move from instability toward wholeness." },
+  { n: "02", title: "Generational Wealth", body: "Housing, entrepreneurship, career development, and asset-building pathways that support long-term economic mobility." },
+  { n: "03", title: "Generational Legacy", body: "Education, strategic civic planning, and leadership development that prepare the next generation to lead." },
+  { n: "04", title: "Generational Transitions", body: "Support for estates, family life, culture, and life-stage transitions that strengthen families across generations." },
 ];
 
 const served = [
@@ -57,55 +41,75 @@ const impactTiers = [
 function Home() {
   return (
     <Layout>
-      {/* HERO */}
-      <section className="relative overflow-hidden" style={{ background: "var(--burgundy-deep)" }}>
-        <div className="absolute inset-0">
-          <img src={hero} alt="" className="h-full w-full object-cover opacity-40" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, oklch(0.26 0.09 17 / 0.55), oklch(0.26 0.09 17 / 0.85))" }} />
-        </div>
-        <div className="relative container-edge pt-24 md:pt-32 pb-20 md:pb-28 text-ivory">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="h-px w-12" style={{ background: "var(--gold)" }} />
-            <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold">Western Tidewater · Virginia</span>
-          </div>
-          <h1
-            className="text-4xl md:text-6xl lg:text-7xl max-w-4xl leading-[1.02] tracking-tight text-ivory"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Designing New Opportunities for New Beginnings.
-          </h1>
-          <p className="mt-7 max-w-2xl text-lg md:text-xl text-ivory/85 leading-relaxed">
-            Jenesis CDC builds strong, sustainable communities through education,
-            economic empowerment, health services, and strategic partnerships
-            across the Western Tidewater region.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Link to="/programs" className="btn-gold">Explore Our Programs</Link>
-            <Link to="/coalition" className="btn-ghost-light">Join the Coalition</Link>
-          </div>
-          <p className="mt-10 text-sm text-ivory/65">
-            Serving young people, families, and communities across Virginia.
-          </p>
+      {/* HERO — editorial split */}
+      <section className="relative" style={{ background: "var(--ivory)" }}>
+        <div className="container-edge pt-12 md:pt-20 pb-14 md:pb-20 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <Reveal className="lg:col-span-6">
+            <div className="eyebrow mb-5">Western Tidewater, Virginia</div>
+            <h1
+              className="text-[40px] sm:text-5xl lg:text-[64px] leading-[1.04] tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Designing new <br className="hidden sm:block" />
+              opportunities for <br className="hidden sm:block" />
+              <span style={{ color: "var(--burgundy)" }}>new beginnings.</span>
+            </h1>
+            <p className="mt-7 max-w-xl text-base md:text-lg text-foreground/80 leading-relaxed">
+              Jenesis CDC builds strong, sustainable communities through education,
+              economic empowerment, health services, and strategic partnerships
+              across the Western Tidewater region.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/programs" className="btn-primary">Explore Our Programs</Link>
+              <Link to="/coalition" className="btn-outline">Join the Coalition</Link>
+            </div>
+            <p className="mt-8 text-sm text-muted-foreground">
+              Serving young people, families, and communities across Virginia.
+            </p>
+          </Reveal>
+
+          <Reveal className="lg:col-span-6" delay={120}>
+            <div className="relative">
+              <div className="aspect-[4/5] overflow-hidden rounded-xl">
+                <img src={hero} alt="Community members of Western Tidewater" className="h-full w-full object-cover" />
+              </div>
+              <div
+                className="hidden md:block absolute -bottom-8 -left-8 w-[58%] aspect-[4/3] overflow-hidden rounded-xl border-4"
+                style={{ borderColor: "var(--ivory)" }}
+              >
+                <img src={garden} alt="Community garden" className="h-full w-full object-cover" />
+              </div>
+              <div
+                className="hidden lg:flex absolute -top-6 -right-6 px-5 py-4 rounded-lg items-center gap-3"
+                style={{ background: "var(--burgundy)", color: "var(--ivory)" }}
+              >
+                <span className="text-[10px] tracking-[0.2em] uppercase text-gold">Est. 2024</span>
+                <span className="h-6 w-px bg-ivory/30" />
+                <span className="text-sm font-semibold">Franklin, VA</span>
+              </div>
+            </div>
+          </Reveal>
         </div>
 
-        {/* mission bar */}
-        <div className="relative" style={{ background: "var(--burgundy)" }}>
+        {/* Build People / Partners / Capacity band */}
+        <div style={{ background: "var(--burgundy)" }}>
           <div className="container-edge grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-ivory/15">
             {[
-              { k: "Build", v: "People" },
-              { k: "Build", v: "Partners" },
-              { k: "Build", v: "Capacity" },
+              { k: "Build", v: "People", body: "Investing in young people, families, and leaders across generations." },
+              { k: "Build", v: "Partners", body: "Aligning a coalition of education, faith, workforce, and civic leaders." },
+              { k: "Build", v: "Capacity", body: "Designing systems and resources for long-term community well-being." },
             ].map((m) => (
-              <div key={m.v} className="py-7 md:py-8 px-2 md:px-8 text-ivory">
-                <div className="text-[11px] tracking-[0.22em] uppercase text-ivory/60">{m.k}</div>
-                <div className="mt-1 text-2xl md:text-3xl" style={{ fontFamily: "var(--font-display)" }}>{m.v}</div>
+              <div key={m.v} className="py-8 md:py-10 px-2 md:px-8 text-ivory">
+                <div className="text-[10px] tracking-[0.22em] uppercase text-ivory/60">{m.k}</div>
+                <div className="mt-1 text-2xl md:text-[28px]" style={{ fontFamily: "var(--font-display)" }}>{m.v}</div>
+                <p className="mt-2 text-sm text-ivory/75 leading-relaxed max-w-xs">{m.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* INTRO / ABOUT BLOCK */}
+      {/* INTRO / ABOUT */}
       <section className="py-20 md:py-28">
         <div className="container-edge grid md:grid-cols-12 gap-12 items-start">
           <Reveal className="md:col-span-5">
@@ -149,18 +153,11 @@ function Home() {
             {pillars.map((p, i) => (
               <Reveal key={p.title} delay={i * 90}>
                 <article className="card-quiet h-full flex flex-col">
-                  <div
-                    className="text-xs font-semibold tracking-[0.22em]"
-                    style={{ color: "var(--burgundy)" }}
-                  >
+                  <div className="text-xs font-semibold tracking-[0.22em]" style={{ color: "var(--burgundy)" }}>
                     {p.n}
                   </div>
-                  <h3 className="mt-4 text-2xl" style={{ fontFamily: "var(--font-display)" }}>
-                    {p.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground flex-1">
-                    {p.body}
-                  </p>
+                  <h3 className="mt-4 text-2xl" style={{ fontFamily: "var(--font-display)" }}>{p.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground flex-1">{p.body}</p>
                   <div className="mt-6 h-px" style={{ background: "var(--gold)" }} />
                 </article>
               </Reveal>
@@ -171,7 +168,7 @@ function Home() {
 
       {/* WHO WE SERVE */}
       <section className="py-20 md:py-28">
-        <div className="container-edge grid md:grid-cols-12 gap-12 items-start">
+        <div className="container-edge grid md:grid-cols-12 gap-12 items-center">
           <Reveal className="md:col-span-5">
             <div className="aspect-[4/5] overflow-hidden rounded-xl">
               <img src={family} alt="A multigenerational family at home" className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]" loading="lazy" />
@@ -209,12 +206,12 @@ function Home() {
           </Reveal>
           <div className="mt-14 grid gap-8 lg:grid-cols-3">
             {[
-              { title: "CEED Promise", img: education, body: "An ecosystem of community partners, mentors, and educators investing in K–12 students and their families." },
-              { title: "CEED Corps", img: youth, body: "Young adults ages 18–25 build talent pipelines through asset-building and community development experiences." },
-              { title: "Community Garden", img: garden, body: "An interdisciplinary educational initiative rooted in agricultural practice, healthy eating, and community care." },
+              { title: "CEED Promise", img: education, hash: "ceed-promise", body: "An ecosystem of community partners, mentors, and educators investing in K–12 students and their families." },
+              { title: "CEED Corps", img: youth, hash: "ceed-corps", body: "Young adults ages 18–25 build talent pipelines through asset-building and community development experiences." },
+              { title: "Community Garden", img: garden, hash: "community-garden", body: "An interdisciplinary educational initiative rooted in agricultural practice, healthy eating, and community care." },
             ].map((c, i) => (
               <Reveal key={c.title} delay={i * 100}>
-                <article className="group rounded-xl overflow-hidden border bg-card transition-shadow duration-300 hover:shadow-[0_18px_40px_-22px_oklch(0.2_0.05_17/0.35)]" style={{ borderColor: "var(--border)" }}>
+                <Link to="/programs" hash={c.hash} className="group block rounded-xl overflow-hidden border bg-card transition-shadow duration-300 hover:shadow-[0_18px_40px_-22px_oklch(0.2_0.05_17/0.35)]" style={{ borderColor: "var(--border)" }}>
                   <div className="aspect-[5/4] overflow-hidden">
                     <img src={c.img} alt="" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" loading="lazy" />
                   </div>
@@ -222,7 +219,7 @@ function Home() {
                     <h3 className="text-xl" style={{ fontFamily: "var(--font-display)" }}>{c.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
                   </div>
-                </article>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -230,13 +227,10 @@ function Home() {
       </section>
 
       {/* IMPACT MODEL */}
-      <section className="py-20 md:py-28" style={{ background: "var(--burgundy)", color: "var(--ivory)" }}>
+      <section id="impact" className="py-20 md:py-28" style={{ background: "var(--burgundy)", color: "var(--ivory)" }}>
         <div className="container-edge">
           <Reveal>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-12" style={{ background: "var(--gold)" }} />
-              <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold">Points of Impact</span>
-            </div>
+            <div className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold mb-4">Points of Impact</div>
             <h2 className="text-3xl md:text-5xl max-w-3xl leading-[1.05] text-ivory" style={{ fontFamily: "var(--font-display)" }}>
               Bridging resources, breaking barriers, building dreams.
             </h2>
@@ -246,11 +240,9 @@ function Home() {
               <Reveal key={t.tier} delay={i * 70}>
                 <div
                   className="grid grid-cols-12 items-center gap-4 rounded-lg border border-ivory/15 px-5 md:px-7 py-5 md:py-6 transition-colors hover:bg-ivory/5"
-                  style={{
-                    marginLeft: `${i * 4}%`,
-                  }}
+                  style={{ marginLeft: `${i * 4}%` }}
                 >
-                  <div className="col-span-2 md:col-span-1 font-display text-2xl text-gold" style={{ fontFamily: "var(--font-display)" }}>{t.tier}</div>
+                  <div className="col-span-2 md:col-span-1 text-2xl text-gold" style={{ fontFamily: "var(--font-display)" }}>{t.tier}</div>
                   <div className="col-span-10 md:col-span-4 text-base md:text-lg font-medium text-ivory">{t.label}</div>
                   <div className="col-span-12 md:col-span-7 text-sm text-ivory/75">{t.body}</div>
                 </div>
@@ -275,7 +267,7 @@ function Home() {
               intro="Jenesis CDC brings together leaders from education, healthcare, economic development, social services, faith institutions, workforce organizations, and community leaders to align expertise around shared outcomes."
             />
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link to="/coalition" className="btn-primary">Become a Coalition Partner</Link>
+              <Link to="/contact" search={{ interest: "Coalition Partner" } as never} className="btn-primary">Become a Coalition Partner</Link>
               <Link to="/coalition" className="btn-outline">Learn More</Link>
             </div>
           </Reveal>
@@ -286,14 +278,11 @@ function Home() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <img src={festival} alt="" className="h-full w-full object-cover" loading="lazy" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, oklch(0.26 0.09 17 / 0.92) 0%, oklch(0.26 0.09 17 / 0.55) 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, oklch(0.26 0.09 17 / 0.88) 0%, oklch(0.26 0.09 17 / 0.5) 100%)" }} />
         </div>
         <div className="relative container-edge py-20 md:py-28 text-ivory">
           <div className="max-w-2xl">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-12" style={{ background: "var(--gold)" }} />
-              <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold">September 12–13, 2026 · Franklin, VA</span>
-            </div>
+            <div className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold mb-4">September 12–13, 2026 · Franklin, VA</div>
             <h2 className="text-4xl md:text-5xl text-ivory" style={{ fontFamily: "var(--font-display)" }}>
               Riverfront Soul Festival 2026
             </h2>
@@ -303,8 +292,8 @@ function Home() {
               art, wellness, and civic engagement.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/festival" className="btn-gold">Festival Details</Link>
-              <Link to="/festival" className="btn-ghost-light">Sponsor the Festival</Link>
+              <Link to="/festival" className="btn-gold">View Festival Details</Link>
+              <Link to="/festival" hash="sponsor" className="btn-ghost-light">Sponsorship Opportunities</Link>
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@ export const Route = createFileRoute("/datagen-scholar")({
   head: () => ({
     meta: [
       { title: "DataGen Scholar — Jenesis CDC" },
-      { name: "description", content: "This website was created through the SaNDAI DataGen Scholar Program — a Learn-and-Earn initiative preparing students for AI-shaped careers." },
+      { name: "description", content: "This website was created through SaNDAI's DataGen Scholar Program — a Learn-and-Earn initiative preparing students for AI-shaped careers." },
       { property: "og:title", content: "Designed Through the DataGen Scholar Program" },
       { property: "og:description", content: "A Learn-and-Earn initiative preparing students for leadership in an AI-shaped economy." },
       { property: "og:image", content: education },
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/datagen-scholar")({
 });
 
 const highlights = [
-  { title: "Learn and Earn Model", body: "Students complete lessons, webinars, and projects while gaining paid learning experience." },
+  { title: "Learn and Earn", body: "Students complete lessons, webinars, and projects while gaining paid learning experience." },
   { title: "Real-World Projects", body: "Scholars apply AI, data, design, and communication skills to practical client-focused work." },
   { title: "Career-Ready Skills", body: "The program emphasizes AI literacy, data fluency, digital problem-solving, and professional readiness." },
   { title: "Portfolio Development", body: "Students complete meaningful projects that demonstrate their skills to colleges, employers, and community partners." },
@@ -28,77 +28,78 @@ const highlights = [
 function DataGenPage() {
   return (
     <Layout>
+      <section className="border-b" style={{ borderColor: "var(--border)", background: "var(--sand)" }}>
+        <div className="container-edge py-16 md:py-24 grid md:grid-cols-12 gap-10 items-center">
+          <div className="md:col-span-8">
+            <div className="eyebrow mb-5">DataGen Scholar</div>
+            <h1 className="text-4xl md:text-[52px] leading-[1.05]" style={{ fontFamily: "var(--font-display)" }}>
+              Designed Through the DataGen Scholar Program
+            </h1>
+            <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              This website was created through SaNDAI's DataGen Scholar Program, a
+              Learn-and-Earn initiative that helps students build practical skills
+              in AI, data, digital tools, and real-world project work.
+            </p>
+          </div>
+          <div className="md:col-span-4 flex md:justify-end">
+            <div className="rounded-xl bg-ivory border p-5 inline-flex items-center gap-4" style={{ borderColor: "var(--border)" }}>
+              <img src={datagen} alt="DataGen Scholar" width={56} height={56} className="h-14 w-14 rounded-md object-contain" />
+              <div>
+                <div className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground">Powered by</div>
+                <div className="text-base font-semibold" style={{ fontFamily: "var(--font-display)" }}>SaNDAI Cares</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <PageHeader
-        eyebrow="DataGen Scholar"
-        title="Designed through the DataGen Scholar Program."
-        intro="This website was created through the SaNDAI DataGen Scholar Program — a Learn-and-Earn initiative that prepares high school and early college students for leadership in an economy shaped by artificial intelligence, data, and digital technology."
+        eyebrow=""
+        title={<>Student talent. Real-world impact. Community-centered design.</>}
+        intro="Developed under SaNDAI Cares and supported by SaNDAI Global, the DataGen Scholar Program gives students structured learning, mentorship, credentials, and project experience. Scholars apply skills in AI literacy, data analytics, communication, and digital problem-solving to meaningful community-based work."
       />
 
       <section className="py-20 md:py-28">
-        <div className="container-edge grid lg:grid-cols-12 gap-12">
-          {/* Left: program */}
-          <Reveal className="lg:col-span-7">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="rule" />
-              <span className="eyebrow">About the Program</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl" style={{ fontFamily: "var(--font-display)" }}>
-              Student talent. Real-world impact. Community-centered design.
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-foreground/85">
-              Developed under SaNDAI Cares and supported by SaNDAI Global, the
-              DataGen Scholar Program helps students build practical skills
-              through structured learning, mentorship, credentials, and
-              real-world project experience. Students gain exposure to AI
-              literacy, data analytics, career readiness, digital tools, and
-              professional workflows while building portfolios that prepare
-              them for college, internships, and the future workforce.
-            </p>
-
-            <div className="mt-10 grid sm:grid-cols-2 gap-5">
-              {highlights.map((h) => (
-                <div key={h.title} className="rounded-md border p-5" style={{ borderColor: "var(--border)", background: "var(--sand)" }}>
-                  <div className="text-sm font-semibold" style={{ fontFamily: "var(--font-display)" }}>{h.title}</div>
+        <div className="container-edge">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {highlights.map((h, i) => (
+              <Reveal key={h.title} delay={i * 80}>
+                <div className="card-quiet h-full">
+                  <div className="text-xs font-semibold tracking-[0.22em]" style={{ color: "var(--burgundy)" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div className="mt-3 text-lg font-semibold" style={{ fontFamily: "var(--font-display)" }}>{h.title}</div>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{h.body}</p>
                 </div>
-              ))}
-            </div>
-          </Reveal>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          {/* Right: designer card */}
-          <Reveal className="lg:col-span-5" delay={120}>
-            <aside className="rounded-xl border p-7 sticky top-28" style={{ borderColor: "var(--border)", background: "var(--card)" }}>
-              <div className="flex items-center gap-3">
-                <img src={datagen} alt="DataGen Scholar" width={56} height={56} className="h-14 w-14 rounded-md object-contain bg-ivory" />
-                <div>
-                  <div className="eyebrow">Website Designer</div>
-                  <div className="text-lg" style={{ fontFamily: "var(--font-display)" }}>Uzair Nasir</div>
-                </div>
-              </div>
-              <div className="mt-6 h-px" style={{ background: "var(--gold)" }} />
-              <dl className="mt-6 space-y-4 text-sm">
-                <div>
-                  <dt className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Role</dt>
-                  <dd className="mt-1">Website Designer & DataGen Scholar</dd>
-                </div>
-                <div>
-                  <dt className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">School</dt>
-                  <dd className="mt-1">Thomas Jefferson High School for Science and Technology</dd>
-                </div>
-                <div>
-                  <dt className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Focus Areas</dt>
-                  <dd className="mt-1">Cybersecurity, engineering, applied technology, AI-assisted development</dd>
-                </div>
-                <div>
-                  <dt className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Project Contribution</dt>
-                  <dd className="mt-1">Designed and built the Jenesis CDC website as a DataGen Scholar project.</dd>
-                </div>
-              </dl>
-              <p className="mt-6 text-sm text-foreground/85 leading-relaxed">
-                Designed and developed by Uzair Nasir, a DataGen Scholar and student at Thomas Jefferson High School for Science and Technology. Uzair created this website as a real-world project applying skills in web design, applied technology, data communication, and AI-assisted development.
+      <section className="py-20 md:py-24" style={{ background: "var(--sand)" }}>
+        <div className="container-edge">
+          <Reveal>
+            <div className="max-w-3xl">
+              <div className="eyebrow mb-4">Website Designer</div>
+              <h2 className="text-3xl md:text-[40px] leading-[1.1]" style={{ fontFamily: "var(--font-display)" }}>
+                Uzair Nasir
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-foreground/85">
+                Uzair Nasir is a DataGen Scholar and student at Thomas Jefferson
+                High School for Science and Technology with interests in
+                cybersecurity, engineering, applied technology, and AI-assisted
+                development. He designed and built the Jenesis CDC website as a
+                real-world DataGen Scholar project.
               </p>
-              <a href="#" className="mt-6 btn-outline w-full">View Designer Profile</a>
-            </aside>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {["Web Design", "Applied Technology", "AI-Assisted Development", "Data Communication"].map((t) => (
+                  <span key={t} className="text-xs font-medium px-3 py-1.5 rounded-full border" style={{ borderColor: "var(--border)", background: "var(--ivory)" }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>
