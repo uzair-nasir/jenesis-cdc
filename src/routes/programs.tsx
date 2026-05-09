@@ -57,32 +57,32 @@ function ProgramsPage() {
 
       <section className="py-20 md:py-28">
         <div className="container-edge space-y-24">
-          {programs.map((p, i) => (
-            <Reveal key={p.name}>
-              <article className="grid md:grid-cols-12 gap-10 items-center">
-                <div className={`md:col-span-6 ${i % 2 ? "md:order-2" : ""}`}>
-                  <div className="aspect-[5/4] overflow-hidden rounded-xl">
-                    <img src={p.img} alt={p.name} className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]" loading="lazy" />
+          {programs.map((p, i) => {
+            const slug = p.name.toLowerCase().replace(/\s+/g, "-");
+            return (
+              <Reveal key={p.name}>
+                <article id={slug} className="grid md:grid-cols-12 gap-10 items-center scroll-mt-28">
+                  <div className={`md:col-span-6 ${i % 2 ? "md:order-2" : ""}`}>
+                    <div className="aspect-[5/4] overflow-hidden rounded-xl">
+                      <img src={p.img} alt={p.name} className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]" loading="lazy" />
+                    </div>
                   </div>
-                </div>
-                <div className="md:col-span-6">
-                  <div className="eyebrow mb-3">Program 0{i + 1}</div>
-                  <h2 className="text-3xl md:text-4xl" style={{ fontFamily: "var(--font-display)" }}>{p.name}</h2>
-                  <p className="mt-5 text-base leading-relaxed text-foreground/85">{p.body}</p>
-                </div>
-              </article>
-            </Reveal>
-          ))}
+                  <div className="md:col-span-6">
+                    <div className="eyebrow mb-3">Program 0{i + 1}</div>
+                    <h2 className="text-3xl md:text-4xl" style={{ fontFamily: "var(--font-display)" }}>{p.name}</h2>
+                    <p className="mt-5 text-base leading-relaxed text-foreground/85">{p.body}</p>
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
       <section className="py-20 md:py-28" style={{ background: "var(--sand)" }}>
         <div className="container-edge">
           <Reveal>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="rule" />
-              <span className="eyebrow">Pathways & Pipelines</span>
-            </div>
+            <div className="eyebrow mb-4">Pathways & Pipelines</div>
             <h2 className="text-3xl md:text-5xl max-w-3xl" style={{ fontFamily: "var(--font-display)" }}>
               From caregiver to community leader — a connected journey.
             </h2>

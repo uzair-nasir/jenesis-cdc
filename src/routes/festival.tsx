@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { Reveal } from "@/components/Reveal";
 import festival from "@/assets/festival.jpg";
@@ -92,45 +92,66 @@ const tiers = [
 function FestivalPage() {
   return (
     <Layout>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={festival} alt="" className="h-full w-full object-cover" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, oklch(0.26 0.09 17 / 0.5), oklch(0.26 0.09 17 / 0.85))" }} />
+      {/* Hero — split editorial */}
+      <section style={{ background: "var(--sand)" }}>
+        <div className="container-edge pt-12 md:pt-20 pb-14 md:pb-20 grid lg:grid-cols-12 gap-10 items-center">
+          <Reveal className="lg:col-span-6">
+            <div className="eyebrow mb-5">Franklin, Virginia · September 12–13, 2026</div>
+            <h1 className="text-[40px] sm:text-5xl lg:text-[60px] leading-[1.04] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
+              Riverfront Soul <br />
+              <span style={{ color: "var(--burgundy)" }}>Festival 2026</span>
+            </h1>
+            <p className="mt-6 text-lg text-foreground/80" style={{ fontFamily: "var(--font-display)" }}>
+              Where culture meets community transformation.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#about-festival" className="btn-primary">View Festival Details</a>
+              <a href="#sponsor" className="btn-outline">Sponsorship Opportunities</a>
+            </div>
+          </Reveal>
+          <Reveal className="lg:col-span-6" delay={120}>
+            <div className="aspect-[5/4] overflow-hidden rounded-xl">
+              <img src={festival} alt="Riverfront Soul Festival" className="h-full w-full object-cover" />
+            </div>
+          </Reveal>
         </div>
-        <div className="relative container-edge py-24 md:py-32 text-ivory">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="h-px w-12" style={{ background: "var(--gold)" }} />
-            <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold">Franklin, VA · September 12–13, 2026</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl max-w-4xl text-ivory leading-[1.02]" style={{ fontFamily: "var(--font-display)" }}>
-            Riverfront Soul Festival 2026
-          </h1>
-          <p className="mt-5 text-xl text-ivory/85" style={{ fontFamily: "var(--font-display)" }}>
-            Where culture meets community transformation.
-          </p>
-          <p className="mt-6 max-w-2xl text-base md:text-lg text-ivory/80 leading-relaxed">
-            A powerful intergenerational cultural experience designed to activate
-            community connection, economic growth, and cultural preservation.
-            Through music, art, wellness, and civic engagement, the festival
-            transforms public space into a living ecosystem of opportunity,
-            healing, and celebration.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#sponsor" className="btn-gold">Become a Sponsor</a>
-            <a href="mailto:jenesiscdc@gmail.com" className="btn-ghost-light">Contact Festival Team</a>
-          </div>
+      </section>
+
+      {/* About the Festival */}
+      <section id="about-festival" className="py-20 md:py-28">
+        <div className="container-edge grid md:grid-cols-12 gap-12">
+          <Reveal className="md:col-span-5">
+            <div className="eyebrow mb-4">About the Festival</div>
+            <h2 className="text-3xl md:text-[44px] leading-[1.08]" style={{ fontFamily: "var(--font-display)" }}>
+              Two days. One riverfront. A community in celebration.
+            </h2>
+          </Reveal>
+          <Reveal className="md:col-span-7" delay={120}>
+            <p className="text-lg leading-relaxed text-foreground/85">
+              Riverfront Soul Festival 2026 is a powerful intergenerational
+              cultural experience designed to activate community connection,
+              economic growth, and cultural preservation. Through music, art,
+              wellness, and civic engagement, the festival transforms public
+              space into a living ecosystem of opportunity, healing, and
+              celebration.
+            </p>
+            <div className="mt-8 grid sm:grid-cols-2 gap-3">
+              {impact.map((i) => (
+                <div key={i} className="rounded-md border px-5 py-4" style={{ borderColor: "var(--border)", background: "var(--sand)" }}>
+                  <div className="text-[11px] font-semibold tracking-[0.18em] uppercase text-muted-foreground">Impact</div>
+                  <div className="mt-1 text-lg" style={{ fontFamily: "var(--font-display)" }}>{i}</div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Experience Areas */}
-      <section className="py-20 md:py-28">
+      <section id="experiences" className="py-20 md:py-28" style={{ background: "var(--sand)" }}>
         <div className="container-edge">
           <Reveal>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="rule" />
-              <span className="eyebrow">Experience Areas</span>
-            </div>
+            <div className="eyebrow mb-4">Experience Areas</div>
             <h2 className="text-3xl md:text-5xl max-w-3xl" style={{ fontFamily: "var(--font-display)" }}>
               Six experiences. One riverfront weekend.
             </h2>
@@ -151,31 +172,12 @@ function FestivalPage() {
         </div>
       </section>
 
-      {/* Impact */}
-      <section className="py-16 md:py-20" style={{ background: "var(--sand)" }}>
-        <div className="container-edge">
-          <Reveal>
-            <div className="grid md:grid-cols-4 gap-6">
-              {impact.map((i) => (
-                <div key={i} className="border-t pt-5" style={{ borderColor: "var(--burgundy)" }}>
-                  <div className="text-[11px] font-semibold tracking-[0.22em] uppercase text-muted-foreground">Impact</div>
-                  <div className="mt-2 text-2xl" style={{ fontFamily: "var(--font-display)" }}>{i}</div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Sponsorship */}
       <section id="sponsor" className="py-20 md:py-28">
         <div className="container-edge">
           <Reveal>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="rule" />
-              <span className="eyebrow">Sponsorship</span>
-            </div>
-            <h2 className="text-4xl md:text-6xl max-w-3xl" style={{ fontFamily: "var(--font-display)" }}>
+            <div className="eyebrow mb-4">Sponsorship</div>
+            <h2 className="text-4xl md:text-[56px] max-w-3xl leading-[1.05]" style={{ fontFamily: "var(--font-display)" }}>
               Lead the experience.
             </h2>
             <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
@@ -185,7 +187,7 @@ function FestivalPage() {
 
           <div className="mt-14 grid lg:grid-cols-12 gap-10">
             <Reveal className="lg:col-span-5">
-              <div className="rounded-xl border p-8" style={{ borderColor: "var(--border)", background: "var(--ivory)" }}>
+              <div className="rounded-xl border p-8 lg:sticky lg:top-28" style={{ borderColor: "var(--border)", background: "var(--ivory)" }}>
                 <div className="eyebrow mb-3">Estimated Budget</div>
                 <ul className="divide-y" style={{ borderColor: "var(--border)" }}>
                   {budget.map(([k, v]) => (
@@ -206,7 +208,7 @@ function FestivalPage() {
               {tiers.map((t, i) => (
                 <Reveal key={t.name} delay={i * 70}>
                   <div
-                    className={`rounded-xl border p-7 transition-shadow duration-300 hover:shadow-[0_18px_40px_-22px_oklch(0.2_0.05_17/0.35)]`}
+                    className="rounded-xl border p-7 transition-shadow duration-300 hover:shadow-[0_18px_40px_-22px_oklch(0.2_0.05_17/0.35)]"
                     style={{
                       borderColor: t.featured ? "var(--burgundy)" : "var(--border)",
                       background: t.featured ? "var(--burgundy)" : "var(--card)",
@@ -249,7 +251,13 @@ function FestivalPage() {
               <h3 className="text-2xl md:text-3xl text-ivory" style={{ fontFamily: "var(--font-display)" }}>
                 Ready to confirm your partnership?
               </h3>
-              <p className="mt-3 text-ivory/80">Email <a href="mailto:jenesiscdc@gmail.com" className="text-gold underline">jenesiscdc@gmail.com</a> to confirm your partnership.</p>
+              <p className="mt-3 text-ivory/80">
+                Email <a href="mailto:jenesiscdc@gmail.com" className="text-gold underline">jenesiscdc@gmail.com</a> or use the form below.
+              </p>
+              <div className="mt-6 flex justify-center flex-wrap gap-3">
+                <Link to="/contact" search={{ interest: "Sponsor" } as never} className="btn-gold">Become a Sponsor</Link>
+                <Link to="/contact" search={{ interest: "Festival Question" } as never} className="btn-ghost-light">Contact Festival Team</Link>
+              </div>
             </div>
           </Reveal>
         </div>

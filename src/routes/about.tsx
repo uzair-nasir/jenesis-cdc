@@ -67,7 +67,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-24" style={{ background: "var(--sand)" }}>
+      <section id="mission" className="py-20 md:py-24" style={{ background: "var(--sand)" }}>
         <div className="container-edge grid md:grid-cols-2 gap-10">
           <Reveal>
             <div className="card-quiet h-full">
@@ -95,13 +95,10 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28">
+      <section id="served" className="py-20 md:py-28">
         <div className="container-edge">
           <Reveal>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="rule" />
-              <span className="eyebrow">Core Values</span>
-            </div>
+            <div className="eyebrow mb-4">Core Values</div>
             <h2 className="text-3xl md:text-5xl max-w-3xl" style={{ fontFamily: "var(--font-display)" }}>
               What we believe shapes how we serve.
             </h2>

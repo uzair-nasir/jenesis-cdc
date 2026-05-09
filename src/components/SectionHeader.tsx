@@ -13,14 +13,9 @@ export function SectionHeader({
 }) {
   return (
     <div className={`max-w-3xl ${align === "center" ? "mx-auto text-center" : ""}`}>
-      {eyebrow && (
-        <div className="flex items-center gap-3 mb-4">
-          <span className="rule" />
-          <span className="eyebrow">{eyebrow}</span>
-        </div>
-      )}
+      {eyebrow && <div className="eyebrow mb-4">{eyebrow}</div>}
       <h2
-        className="text-3xl md:text-5xl leading-[1.05] tracking-tight"
+        className="text-[28px] sm:text-4xl md:text-[44px] leading-[1.08] tracking-tight"
         style={{ fontFamily: "var(--font-display)" }}
       >
         {title}

@@ -15,12 +15,9 @@ export function PageHeader({
     <section className="border-b" style={{ borderColor: "var(--border)", background: "var(--sand)" }}>
       <div className="container-edge py-16 md:py-24 grid md:grid-cols-12 gap-10 items-end">
         <div className="md:col-span-7">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="rule" />
-            <span className="eyebrow">{eyebrow}</span>
-          </div>
+          {eyebrow && <div className="eyebrow mb-5">{eyebrow}</div>}
           <h1
-            className="text-4xl md:text-6xl leading-[1.02] tracking-tight"
+            className="text-4xl md:text-[56px] leading-[1.05] tracking-tight"
             style={{ fontFamily: "var(--font-display)" }}
           >
             {title}

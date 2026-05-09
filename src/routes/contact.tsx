@@ -1,10 +1,27 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { useState } from "react";
+import { z } from "zod";
 import { Layout } from "@/components/Layout";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 
+const interests = [
+  "Coalition Partner",
+  "Sponsor",
+  "Festival Question",
+  "Volunteer",
+  "Community Garden",
+  "CEED Promise",
+  "CEED Corps",
+  "General Question",
+] as const;
+
+const searchSchema = z.object({
+  interest: z.enum(interests).optional(),
+});
+
 export const Route = createFileRoute("/contact")({
+  validateSearch: searchSchema,
   head: () => ({
     meta: [
       { title: "Contact — Jenesis CDC" },
@@ -16,18 +33,10 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const interests = [
-  "Coalition Partner",
-  "Sponsor",
-  "Volunteer",
-  "Community Garden",
-  "CEED Promise",
-  "CEED Corps",
-  "General Question",
-];
-
 function ContactPage() {
+  const { interest } = useSearch({ from: "/contact" });
   const [submitted, setSubmitted] = useState(false);
+  const [selected, setSelected] = useState<string>(interest ?? "Coalition Partner");
 
   return (
     <Layout>
@@ -65,6 +74,8 @@ function ContactPage() {
                   </label>
                   <select
                     id="interest"
+                    value={selected}
+                    onChange={(e) => setSelected(e.target.value)}
                     className="w-full rounded-md border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     style={{ borderColor: "var(--border)" }}
                   >
