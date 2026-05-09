@@ -15,7 +15,7 @@ export function PageHeader({
     <section className="border-b" style={{ borderColor: "var(--border)", background: "var(--sand)" }}>
       <div className="container-edge py-16 md:py-24 grid md:grid-cols-12 gap-10 items-end">
         <div className="md:col-span-7">
-          <div className="eyebrow mb-5">{eyebrow}</div>
+          {eyebrow && <div className="eyebrow mb-5">{eyebrow}</div>}
           <h1
             className="text-4xl md:text-[56px] leading-[1.05] tracking-tight"
             style={{ fontFamily: "var(--font-display)" }}

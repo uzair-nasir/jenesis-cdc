@@ -60,7 +60,7 @@ function CoalitionPage() {
               health, and overall well-being.
             </p>
             <div className="mt-8">
-              <Link to="/contact" className="btn-primary">Become a Coalition Partner</Link>
+              <Link to="/contact" search={{ interest: "Coalition Partner" } as never} className="btn-primary">Become a Coalition Partner</Link>
             </div>
           </Reveal>
           <Reveal className="md:col-span-5" delay={120}>
@@ -77,13 +77,10 @@ function CoalitionPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-24" style={{ background: "var(--sand)" }}>
+      <section id="categories" className="py-20 md:py-24" style={{ background: "var(--sand)" }}>
         <div className="container-edge">
           <Reveal>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="rule" />
-              <span className="eyebrow">Coalition Partner Categories</span>
-            </div>
+            <div className="eyebrow mb-4">Coalition Partner Categories</div>
             <h2 className="text-3xl md:text-5xl max-w-3xl" style={{ fontFamily: "var(--font-display)" }}>
               Ten sectors. One coordinated effort.
             </h2>
