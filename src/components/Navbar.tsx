@@ -44,9 +44,9 @@ const nav: NavItem[] = [
     to: "/events",
     children: [
       { label: "Upcoming Events", to: "/events" },
-      { label: "Riverfront Soul Festival 2026", to: "/festival" },
       { label: "Community Garden Days", to: "/events" },
       { label: "Youth Workshops", to: "/events" },
+      { label: "Riverfront Soul Festival 2026", to: "/festival" },
     ],
   },
   {
