@@ -207,7 +207,7 @@ function FestivalPage() {
               {tiers.map((t, i) => (
                 <Reveal key={t.name} delay={i * 70}>
                   <div
-                    className="rounded-xl border p-7 transition-shadow duration-300 hover:shadow-[0_18px_40px_-22px_oklch(0.2_0.05_17/0.35)]"
+                    className="rounded-lg border p-7"
                     style={{
                       borderColor: t.featured ? "var(--burgundy)" : "var(--border)",
                       background: t.featured ? "var(--burgundy)" : "var(--card)",
