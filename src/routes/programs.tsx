@@ -64,7 +64,7 @@ function ProgramsPage() {
                 <article id={slug} className="grid md:grid-cols-12 gap-10 items-center scroll-mt-28">
                   <div className={`md:col-span-6 ${i % 2 ? "md:order-2" : ""}`}>
                     <div className="aspect-[5/4] overflow-hidden rounded-xl">
-                      <img src={p.img} alt={p.name} className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]" loading="lazy" />
+                      <img src={p.img} alt={p.name} className="h-full w-full object-cover" loading="lazy" />
                     </div>
                   </div>
                   <div className="md:col-span-6">
