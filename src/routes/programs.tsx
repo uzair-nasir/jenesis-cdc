@@ -68,7 +68,6 @@ function ProgramsPage() {
                     </div>
                   </div>
                   <div className="md:col-span-6">
-                    <div className="eyebrow mb-3">Program 0{i + 1}</div>
                     <h2 className="text-3xl md:text-4xl" style={{ fontFamily: "var(--font-display)" }}>{p.name}</h2>
                     <p className="mt-5 text-base leading-relaxed text-foreground/85">{p.body}</p>
                   </div>
