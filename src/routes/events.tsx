@@ -24,7 +24,7 @@ export const Route = createFileRoute("/events")({
 const events = [
   {
     img: festival,
-    date: "September 12–13, 2026",
+    date: "September 12-13, 2026",
     location: "Franklin, Virginia",
     title: "Riverfront Soul Festival 2026",
     body: "A two-day intergenerational celebration of music, art, wellness, and civic engagement.",
