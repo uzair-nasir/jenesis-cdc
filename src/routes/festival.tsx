@@ -96,10 +96,9 @@ function FestivalPage() {
       <section style={{ background: "var(--sand)" }}>
         <div className="container-edge pt-12 md:pt-20 pb-14 md:pb-20 grid lg:grid-cols-12 gap-10 items-center">
           <Reveal className="lg:col-span-6">
-            <div className="eyebrow mb-5">Franklin, Virginia · September 12–13, 2026</div>
+            <div className="eyebrow mb-5">Franklin, Virginia · September 12-13, 2026</div>
             <h1 className="text-[40px] sm:text-5xl lg:text-[60px] leading-[1.04] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-              Riverfront Soul <br />
-              <span style={{ color: "var(--burgundy)" }}>Festival 2026</span>
+              Riverfront Soul Festival 2026
             </h1>
             <p className="mt-6 text-lg text-foreground/80" style={{ fontFamily: "var(--font-display)" }}>
               Where culture meets community transformation.
