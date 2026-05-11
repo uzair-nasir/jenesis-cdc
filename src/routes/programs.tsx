@@ -51,7 +51,7 @@ function ProgramsPage() {
       <PageHeader
         eyebrow="Programs"
         title={<>Programs that build pathways.</>}
-        intro="Each program is designed to interconnect — from K–12 education to young-adult leadership and family stability."
+        intro="Each program is designed to interconnect, from K-12 education to young adult leadership and family stability."
         image={education}
       />
 

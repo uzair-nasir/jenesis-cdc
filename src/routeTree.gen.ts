@@ -14,7 +14,6 @@ import { Route as FestivalRouteImport } from './routes/festival'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as DatagenScholarRouteImport } from './routes/datagen-scholar'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CommunityProjectsRouteImport } from './routes/community-projects'
 import { Route as CoalitionRouteImport } from './routes/coalition'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -44,11 +43,6 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CommunityProjectsRoute = CommunityProjectsRouteImport.update({
-  id: '/community-projects',
-  path: '/community-projects',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const CoalitionRoute = CoalitionRouteImport.update({
   id: '/coalition',
   path: '/coalition',
@@ -69,7 +63,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coalition': typeof CoalitionRoute
-  '/community-projects': typeof CommunityProjectsRoute
   '/contact': typeof ContactRoute
   '/datagen-scholar': typeof DatagenScholarRoute
   '/events': typeof EventsRoute
@@ -80,7 +73,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coalition': typeof CoalitionRoute
-  '/community-projects': typeof CommunityProjectsRoute
   '/contact': typeof ContactRoute
   '/datagen-scholar': typeof DatagenScholarRoute
   '/events': typeof EventsRoute
@@ -92,7 +84,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coalition': typeof CoalitionRoute
-  '/community-projects': typeof CommunityProjectsRoute
   '/contact': typeof ContactRoute
   '/datagen-scholar': typeof DatagenScholarRoute
   '/events': typeof EventsRoute
@@ -105,7 +96,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coalition'
-    | '/community-projects'
     | '/contact'
     | '/datagen-scholar'
     | '/events'
@@ -116,7 +106,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coalition'
-    | '/community-projects'
     | '/contact'
     | '/datagen-scholar'
     | '/events'
@@ -127,7 +116,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coalition'
-    | '/community-projects'
     | '/contact'
     | '/datagen-scholar'
     | '/events'
@@ -139,7 +127,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CoalitionRoute: typeof CoalitionRoute
-  CommunityProjectsRoute: typeof CommunityProjectsRoute
   ContactRoute: typeof ContactRoute
   DatagenScholarRoute: typeof DatagenScholarRoute
   EventsRoute: typeof EventsRoute
@@ -184,13 +171,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/community-projects': {
-      id: '/community-projects'
-      path: '/community-projects'
-      fullPath: '/community-projects'
-      preLoaderRoute: typeof CommunityProjectsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/coalition': {
       id: '/coalition'
       path: '/coalition'
@@ -219,7 +199,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CoalitionRoute: CoalitionRoute,
-  CommunityProjectsRoute: CommunityProjectsRoute,
   ContactRoute: ContactRoute,
   DatagenScholarRoute: DatagenScholarRoute,
   EventsRoute: EventsRoute,
@@ -229,3 +208,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
