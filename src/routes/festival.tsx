@@ -6,8 +6,8 @@ import festival from "@/assets/festival.jpg";
 export const Route = createFileRoute("/festival")({
   head: () => ({
     meta: [
-      { title: "Riverfront Soul Festival 2026 — Jenesis CDC" },
-      { name: "description", content: "September 12–13, 2026 in Franklin, Virginia. Where culture meets community transformation." },
+      { title: "Riverfront Soul Festival 2026 | Jenesis CDC" },
+      { name: "description", content: "September 12-13, 2026 in Franklin, Virginia. Where culture meets community transformation." },
       { property: "og:title", content: "Riverfront Soul Festival 2026" },
       { property: "og:description", content: "An intergenerational cultural experience activating community connection, economic growth, and cultural preservation." },
       { property: "og:image", content: festival },
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/festival")({
 const experiences = [
   { title: "Music Stage", body: "Headliners and community artists across genres rooted in soul." },
   { title: "Artist Village", body: "Local makers, painters, and crafters celebrating Tidewater talent." },
-  { title: "Wellness Pavilion", body: "Mind, body, and spirit — yoga, screenings, and conversation." },
+  { title: "Wellness Pavilion", body: "Mind, body, and spirit. Yoga, screenings, and conversation." },
   { title: "Taste of Franklin", body: "Regional food and beverage from Black-owned and local vendors." },
   { title: "Civic Education", body: "Voter resources, civic dialogues, and youth-led panels." },
   { title: "Storytelling Circles", body: "Oral history and intergenerational exchange." },
@@ -96,10 +96,9 @@ function FestivalPage() {
       <section style={{ background: "var(--sand)" }}>
         <div className="container-edge pt-12 md:pt-20 pb-14 md:pb-20 grid lg:grid-cols-12 gap-10 items-center">
           <Reveal className="lg:col-span-6">
-            <div className="eyebrow mb-5">Franklin, Virginia · September 12–13, 2026</div>
+            <div className="eyebrow mb-5">Franklin, Virginia · September 12-13, 2026</div>
             <h1 className="text-[40px] sm:text-5xl lg:text-[60px] leading-[1.04] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-              Riverfront Soul <br />
-              <span style={{ color: "var(--burgundy)" }}>Festival 2026</span>
+              Riverfront Soul Festival 2026
             </h1>
             <p className="mt-6 text-lg text-foreground/80" style={{ fontFamily: "var(--font-display)" }}>
               Where culture meets community transformation.
@@ -208,7 +207,7 @@ function FestivalPage() {
               {tiers.map((t, i) => (
                 <Reveal key={t.name} delay={i * 70}>
                   <div
-                    className="rounded-xl border p-7 transition-shadow duration-300 hover:shadow-[0_18px_40px_-22px_oklch(0.2_0.05_17/0.35)]"
+                    className="rounded-lg border p-7"
                     style={{
                       borderColor: t.featured ? "var(--burgundy)" : "var(--border)",
                       background: t.featured ? "var(--burgundy)" : "var(--card)",

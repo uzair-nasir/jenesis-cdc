@@ -7,7 +7,7 @@ import coalition from "@/assets/coalition.jpg";
 export const Route = createFileRoute("/coalition")({
   head: () => ({
     meta: [
-      { title: "Coalition — Jenesis CDC" },
+      { title: "Coalition | Jenesis CDC" },
       { name: "description", content: "Join a powerful network of partners aligning expertise to close the opportunity gap." },
       { property: "og:title", content: "Be Part of the Coalition" },
       { property: "og:description", content: "Education, healthcare, workforce, faith, social services, and businesses united for shared outcomes." },

@@ -9,10 +9,10 @@ import garden from "@/assets/garden.jpg";
 export const Route = createFileRoute("/programs")({
   head: () => ({
     meta: [
-      { title: "Programs — Jenesis CDC" },
-      { name: "description", content: "CEED Promise, CEED Corps, and the Community Garden — programs that build pathways from education to economic mobility." },
-      { property: "og:title", content: "Programs — Jenesis CDC" },
-      { property: "og:description", content: "Programs that build pathways from K–12 education to young-adult workforce readiness." },
+      { title: "Programs | Jenesis CDC" },
+      { name: "description", content: "CEED Promise, CEED Corps, and the Community Garden. Programs that build pathways from education to economic mobility." },
+      { property: "og:title", content: "Programs | Jenesis CDC" },
+      { property: "og:description", content: "Programs that build pathways from K-12 education to young-adult workforce readiness." },
       { property: "og:image", content: education },
     ],
   }),
@@ -23,12 +23,12 @@ const programs = [
   {
     name: "CEED Promise",
     img: education,
-    body: "CEED Promise is a collaborative project where community organizations committed to the next generation of home-grown leadership invest in education and economic empowerment. CEED Promise leverages community networks and relationships to design inspiring teaching and learning experiences for K–12 students and their families.",
+    body: "CEED Promise is a collaborative project where community organizations committed to the next generation of home-grown leadership invest in education and economic empowerment. CEED Promise leverages community networks and relationships to design inspiring teaching and learning experiences for K-12 students and their families.",
   },
   {
     name: "CEED Corps",
     img: youth,
-    body: "CEED Corps is a collaborative project that leverages community networks and relationships to develop teaching and learning experiences that build talent pipelines for viable and sustainable economies. Young adults ages 18–25 participate in activities sponsored by partnering organizations that connect learning to asset-building and community development.",
+    body: "CEED Corps is a collaborative project that leverages community networks and relationships to develop teaching and learning experiences that build talent pipelines for viable and sustainable economies. Young adults ages 18-25 participate in activities sponsored by partnering organizations that connect learning to asset-building and community development.",
   },
   {
     name: "Community Garden",
@@ -51,7 +51,7 @@ function ProgramsPage() {
       <PageHeader
         eyebrow="Programs"
         title={<>Programs that build pathways.</>}
-        intro="Each program is designed to interconnect — from K–12 education to young-adult leadership and family stability."
+        intro="Each program is designed to interconnect, from K-12 education to young adult leadership and family stability."
         image={education}
       />
 
@@ -64,11 +64,10 @@ function ProgramsPage() {
                 <article id={slug} className="grid md:grid-cols-12 gap-10 items-center scroll-mt-28">
                   <div className={`md:col-span-6 ${i % 2 ? "md:order-2" : ""}`}>
                     <div className="aspect-[5/4] overflow-hidden rounded-xl">
-                      <img src={p.img} alt={p.name} className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]" loading="lazy" />
+                      <img src={p.img} alt={p.name} className="h-full w-full object-cover" loading="lazy" />
                     </div>
                   </div>
                   <div className="md:col-span-6">
-                    <div className="eyebrow mb-3">Program 0{i + 1}</div>
                     <h2 className="text-3xl md:text-4xl" style={{ fontFamily: "var(--font-display)" }}>{p.name}</h2>
                     <p className="mt-5 text-base leading-relaxed text-foreground/85">{p.body}</p>
                   </div>
@@ -79,33 +78,20 @@ function ProgramsPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28" style={{ background: "var(--sand)" }}>
+      <section className="py-20 md:py-24" style={{ background: "var(--sand)" }}>
         <div className="container-edge">
-          <Reveal>
-            <div className="eyebrow mb-4">Pathways & Pipelines</div>
-            <h2 className="text-3xl md:text-5xl max-w-3xl" style={{ fontFamily: "var(--font-display)" }}>
-              From caregiver to community leader — a connected journey.
-            </h2>
-          </Reveal>
-          <div className="mt-14 relative">
-            <div className="hidden md:block absolute left-0 right-0 top-[34px] h-px" style={{ background: "var(--burgundy)" }} />
-            <ol className="grid gap-8 md:grid-cols-5 relative">
-              {pathway.map((step, i) => (
-                <Reveal key={step} delay={i * 90}>
-                  <li className="relative">
-                    <div className="flex items-center justify-center h-[68px]">
-                      <div
-                        className="h-12 w-12 rounded-full flex items-center justify-center text-sm font-semibold text-ivory"
-                        style={{ background: "var(--burgundy)" }}
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </div>
-                    </div>
-                    <div className="mt-4 text-center text-sm font-medium text-foreground">{step}</div>
-                  </li>
-                </Reveal>
-              ))}
-            </ol>
+          <h2 className="text-3xl md:text-5xl max-w-3xl" style={{ fontFamily: "var(--font-display)" }}>
+            From caregiver to community leader, a connected journey.
+          </h2>
+          <div className="mt-12 grid gap-4 md:grid-cols-5">
+            {pathway.map((step, i) => (
+              <div key={step} className="rounded-lg border bg-card p-5 h-full" style={{ borderColor: "var(--border)" }}>
+                <div className="text-xs font-semibold tracking-[0.22em] uppercase" style={{ color: "var(--burgundy)" }}>
+                  Step {String(i + 1).padStart(2, "0")}
+                </div>
+                <div className="mt-3 text-sm font-medium text-foreground leading-snug">{step}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

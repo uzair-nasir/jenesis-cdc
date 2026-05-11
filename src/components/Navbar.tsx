@@ -44,9 +44,9 @@ const nav: NavItem[] = [
     to: "/events",
     children: [
       { label: "Upcoming Events", to: "/events" },
-      { label: "Riverfront Soul Festival 2026", to: "/festival" },
       { label: "Community Garden Days", to: "/events" },
       { label: "Youth Workshops", to: "/events" },
+      { label: "Riverfront Soul Festival 2026", to: "/festival" },
     ],
   },
   {
@@ -88,12 +88,11 @@ export function Navbar() {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full transition-colors"
+      className="sticky top-0 z-50 w-full transition-shadow"
       style={{
-        background: scrolled ? "var(--ivory)" : "color-mix(in oklab, var(--ivory) 92%, transparent)",
-        backdropFilter: scrolled ? "none" : "blur(8px)",
-        WebkitBackdropFilter: scrolled ? "none" : "blur(8px)",
-        borderBottom: `1px solid ${scrolled ? "var(--border)" : "color-mix(in oklab, var(--border) 60%, transparent)"}`,
+        background: "var(--ivory)",
+        borderBottom: `1px solid var(--border)`,
+        boxShadow: scrolled ? "0 1px 0 rgba(0,0,0,0.04), 0 8px 24px -20px rgba(0,0,0,0.18)" : "none",
       }}
     >
       <div className="container-edge flex items-center justify-between gap-6 py-3.5">

@@ -139,22 +139,17 @@
     color: var(--burgundy);
   }
 
-  .rule {
-    height: 1px;
-    width: 48px;
-    background: var(--burgundy);
-    display: inline-block;
-  }
+
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold tracking-wide transition;
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold tracking-wide transition-colors;
     background: var(--burgundy);
     color: var(--ivory);
   }
   .btn-primary:hover { background: var(--burgundy-deep); }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold tracking-wide transition border;
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold tracking-wide transition-colors border;
     border-color: var(--charcoal);
     color: var(--charcoal);
     background: transparent;
@@ -162,34 +157,22 @@
   .btn-outline:hover { background: var(--charcoal); color: var(--ivory); }
 
   .btn-gold {
-    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold tracking-wide transition;
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold tracking-wide transition-colors;
     background: var(--gold);
     color: oklch(0.2 0.02 60);
   }
   .btn-gold:hover { filter: brightness(0.95); }
 
   .btn-ghost-light {
-    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold tracking-wide transition border;
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold tracking-wide transition-colors border;
     border-color: oklch(1 0 0 / 0.5);
     color: var(--ivory);
   }
   .btn-ghost-light:hover { background: oklch(1 0 0 / 0.1); }
 
   .card-quiet {
-    @apply rounded-xl border bg-card p-7 transition-shadow duration-300;
+    @apply rounded-lg border bg-card p-7;
     border-color: var(--border);
   }
-  .card-quiet:hover {
-    box-shadow: 0 12px 30px -18px oklch(0.2 0.05 17 / 0.25);
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .reveal.in {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .card-quiet:hover { border-color: var(--burgundy); }
 }

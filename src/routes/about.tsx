@@ -3,12 +3,12 @@ import { Layout } from "@/components/Layout";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 import family from "@/assets/family.jpg";
-import town from "@/assets/town.jpg";
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Jenesis CDC" },
+      { title: "About Jenesis CDC" },
       { name: "description", content: "Jenesis CDC ignites new beginnings by empowering communities through education, economic opportunity, and sustainable growth." },
       { property: "og:title", content: "About Jenesis CDC" },
       { property: "og:description", content: "Mission, vision, and values of Jenesis Community Development Corporation." },
@@ -29,7 +29,7 @@ function AboutPage() {
     <Layout>
       <PageHeader
         eyebrow="About Jenesis CDC"
-        title={<>New beginnings, built together — across generations.</>}
+        title={<>New beginnings, built together across generations.</>}
         intro="Jenesis CDC exists to ignite new beginnings by empowering communities through education, economic opportunity, and sustainable growth."
         image={family}
       />
@@ -116,12 +116,8 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={town} alt="" className="h-full w-full object-cover" loading="lazy" />
-          <div className="absolute inset-0" style={{ background: "oklch(0.26 0.09 17 / 0.85)" }} />
-        </div>
-        <div className="relative container-edge py-20 text-ivory text-center">
+      <section className="py-20 md:py-24" style={{ background: "var(--burgundy)", color: "var(--ivory)" }}>
+        <div className="container-edge text-center">
           <h2 className="text-3xl md:text-4xl max-w-2xl mx-auto text-ivory" style={{ fontFamily: "var(--font-display)" }}>
             Help us build the next chapter of community life in Western Tidewater.
           </h2>
