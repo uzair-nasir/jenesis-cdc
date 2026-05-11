@@ -12,7 +12,7 @@ export const Route = createFileRoute("/programs")({
       { title: "Programs | Jenesis CDC" },
       { name: "description", content: "CEED Promise, CEED Corps, and the Community Garden. Programs that build pathways from education to economic mobility." },
       { property: "og:title", content: "Programs | Jenesis CDC" },
-      { property: "og:description", content: "Programs that build pathways from K–12 education to young-adult workforce readiness." },
+      { property: "og:description", content: "Programs that build pathways from K-12 education to young-adult workforce readiness." },
       { property: "og:image", content: education },
     ],
   }),
@@ -23,12 +23,12 @@ const programs = [
   {
     name: "CEED Promise",
     img: education,
-    body: "CEED Promise is a collaborative project where community organizations committed to the next generation of home-grown leadership invest in education and economic empowerment. CEED Promise leverages community networks and relationships to design inspiring teaching and learning experiences for K–12 students and their families.",
+    body: "CEED Promise is a collaborative project where community organizations committed to the next generation of home-grown leadership invest in education and economic empowerment. CEED Promise leverages community networks and relationships to design inspiring teaching and learning experiences for K-12 students and their families.",
   },
   {
     name: "CEED Corps",
     img: youth,
-    body: "CEED Corps is a collaborative project that leverages community networks and relationships to develop teaching and learning experiences that build talent pipelines for viable and sustainable economies. Young adults ages 18–25 participate in activities sponsored by partnering organizations that connect learning to asset-building and community development.",
+    body: "CEED Corps is a collaborative project that leverages community networks and relationships to develop teaching and learning experiences that build talent pipelines for viable and sustainable economies. Young adults ages 18-25 participate in activities sponsored by partnering organizations that connect learning to asset-building and community development.",
   },
   {
     name: "Community Garden",
