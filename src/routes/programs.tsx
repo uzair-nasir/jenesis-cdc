@@ -79,33 +79,20 @@ function ProgramsPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28" style={{ background: "var(--sand)" }}>
+      <section className="py-20 md:py-24" style={{ background: "var(--sand)" }}>
         <div className="container-edge">
-          <Reveal>
-            <div className="eyebrow mb-4">Pathways & Pipelines</div>
-            <h2 className="text-3xl md:text-5xl max-w-3xl" style={{ fontFamily: "var(--font-display)" }}>
-              From caregiver to community leader — a connected journey.
-            </h2>
-          </Reveal>
-          <div className="mt-14 relative">
-            <div className="hidden md:block absolute left-0 right-0 top-[34px] h-px" style={{ background: "var(--burgundy)" }} />
-            <ol className="grid gap-8 md:grid-cols-5 relative">
-              {pathway.map((step, i) => (
-                <Reveal key={step} delay={i * 90}>
-                  <li className="relative">
-                    <div className="flex items-center justify-center h-[68px]">
-                      <div
-                        className="h-12 w-12 rounded-full flex items-center justify-center text-sm font-semibold text-ivory"
-                        style={{ background: "var(--burgundy)" }}
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </div>
-                    </div>
-                    <div className="mt-4 text-center text-sm font-medium text-foreground">{step}</div>
-                  </li>
-                </Reveal>
-              ))}
-            </ol>
+          <h2 className="text-3xl md:text-5xl max-w-3xl" style={{ fontFamily: "var(--font-display)" }}>
+            From caregiver to community leader, a connected journey.
+          </h2>
+          <div className="mt-12 grid gap-4 md:grid-cols-5">
+            {pathway.map((step, i) => (
+              <div key={step} className="rounded-lg border bg-card p-5 h-full" style={{ borderColor: "var(--border)" }}>
+                <div className="text-xs font-semibold tracking-[0.22em] uppercase" style={{ color: "var(--burgundy)" }}>
+                  Step {String(i + 1).padStart(2, "0")}
+                </div>
+                <div className="mt-3 text-sm font-medium text-foreground leading-snug">{step}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
