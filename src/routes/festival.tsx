@@ -19,7 +19,7 @@ export const Route = createFileRoute("/festival")({
 const experiences = [
   { title: "Music Stage", body: "Headliners and community artists across genres rooted in soul." },
   { title: "Artist Village", body: "Local makers, painters, and crafters celebrating Tidewater talent." },
-  { title: "Wellness Pavilion", body: "Mind, body, and spirit — yoga, screenings, and conversation." },
+  { title: "Wellness Pavilion", body: "Mind, body, and spirit. Yoga, screenings, and conversation." },
   { title: "Taste of Franklin", body: "Regional food and beverage from Black-owned and local vendors." },
   { title: "Civic Education", body: "Voter resources, civic dialogues, and youth-led panels." },
   { title: "Storytelling Circles", body: "Oral history and intergenerational exchange." },

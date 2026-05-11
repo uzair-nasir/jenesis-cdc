@@ -29,7 +29,7 @@ function AboutPage() {
     <Layout>
       <PageHeader
         eyebrow="About Jenesis CDC"
-        title={<>New beginnings, built together — across generations.</>}
+        title={<>New beginnings, built together across generations.</>}
         intro="Jenesis CDC exists to ignite new beginnings by empowering communities through education, economic opportunity, and sustainable growth."
         image={family}
       />

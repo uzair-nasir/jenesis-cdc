@@ -36,7 +36,7 @@ const events = [
     date: "Recurring · Saturdays",
     location: "Community Garden",
     title: "Community Garden Volunteer Days",
-    body: "Hands-on stewardship — planting, harvesting, and learning sustainable practices together.",
+    body: "Hands-on stewardship: planting, harvesting, and learning sustainable practices together.",
     cta: "Volunteer",
     href: "/contact",
   },

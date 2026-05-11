@@ -108,7 +108,7 @@ function ContactPage() {
               <div className="mt-8 h-px bg-ivory/20" />
               <div className="mt-6">
                 <div className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold">Region</div>
-                <p className="mt-2 text-ivory/85">Western Tidewater, Virginia — including Franklin and surrounding communities.</p>
+                <p className="mt-2 text-ivory/85">Western Tidewater, Virginia, including Franklin and surrounding communities.</p>
               </div>
               <div className="mt-8 h-px bg-ivory/20" />
               <div className="mt-6">
