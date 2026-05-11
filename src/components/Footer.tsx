@@ -29,7 +29,8 @@ export function Footer() {
             <li><Link to="/about" className="hover:text-gold">About</Link></li>
             <li><Link to="/programs" className="hover:text-gold">Programs</Link></li>
             <li><Link to="/coalition" className="hover:text-gold">Coalition</Link></li>
-            <li><Link to="/community-projects" className="hover:text-gold">Community Projects</Link></li>
+            <li><Link to="/events" className="hover:text-gold">Events</Link></li>
+            <li><Link to="/festival" className="hover:text-gold">Riverfront Soul Festival</Link></li>
           </ul>
         </div>
 
