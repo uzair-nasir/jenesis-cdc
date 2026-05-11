@@ -3,7 +3,7 @@ import { Layout } from "@/components/Layout";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 import family from "@/assets/family.jpg";
-import town from "@/assets/town.jpg";
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
