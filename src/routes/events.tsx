@@ -11,9 +11,9 @@ import youth from "@/assets/youth.jpg";
 export const Route = createFileRoute("/events")({
   head: () => ({
     meta: [
-      { title: "Events — Jenesis CDC" },
+      { title: "Events | Jenesis CDC" },
       { name: "description", content: "Festivals, garden volunteer days, coalition meetings, youth workshops, and family engagement events." },
-      { property: "og:title", content: "Events — Jenesis CDC" },
+      { property: "og:title", content: "Events | Jenesis CDC" },
       { property: "og:description", content: "Upcoming gatherings across Western Tidewater." },
       { property: "og:image", content: festival },
     ],

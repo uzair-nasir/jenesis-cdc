@@ -24,9 +24,9 @@ export const Route = createFileRoute("/contact")({
   validateSearch: searchSchema,
   head: () => ({
     meta: [
-      { title: "Contact — Jenesis CDC" },
+      { title: "Contact | Jenesis CDC" },
       { name: "description", content: "Reach Jenesis CDC about coalition partnership, sponsorship, volunteering, and community programs." },
-      { property: "og:title", content: "Contact — Jenesis CDC" },
+      { property: "og:title", content: "Contact | Jenesis CDC" },
       { property: "og:description", content: "Connect with our team about partnership and programs." },
     ],
   }),

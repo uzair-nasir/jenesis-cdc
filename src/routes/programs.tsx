@@ -9,9 +9,9 @@ import garden from "@/assets/garden.jpg";
 export const Route = createFileRoute("/programs")({
   head: () => ({
     meta: [
-      { title: "Programs — Jenesis CDC" },
+      { title: "Programs | Jenesis CDC" },
       { name: "description", content: "CEED Promise, CEED Corps, and the Community Garden — programs that build pathways from education to economic mobility." },
-      { property: "og:title", content: "Programs — Jenesis CDC" },
+      { property: "og:title", content: "Programs | Jenesis CDC" },
       { property: "og:description", content: "Programs that build pathways from K–12 education to young-adult workforce readiness." },
       { property: "og:image", content: education },
     ],

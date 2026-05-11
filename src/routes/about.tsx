@@ -8,7 +8,7 @@ import town from "@/assets/town.jpg";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Jenesis CDC" },
+      { title: "About Jenesis CDC" },
       { name: "description", content: "Jenesis CDC ignites new beginnings by empowering communities through education, economic opportunity, and sustainable growth." },
       { property: "og:title", content: "About Jenesis CDC" },
       { property: "og:description", content: "Mission, vision, and values of Jenesis Community Development Corporation." },

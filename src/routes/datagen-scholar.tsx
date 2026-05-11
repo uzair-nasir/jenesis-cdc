@@ -8,7 +8,7 @@ import education from "@/assets/education.jpg";
 export const Route = createFileRoute("/datagen-scholar")({
   head: () => ({
     meta: [
-      { title: "DataGen Scholar — Jenesis CDC" },
+      { title: "DataGen Scholar | Jenesis CDC" },
       { name: "description", content: "This website was created through SaNDAI's DataGen Scholar Program — a Learn-and-Earn initiative preparing students for AI-shaped careers." },
       { property: "og:title", content: "Designed Through the DataGen Scholar Program" },
       { property: "og:description", content: "A Learn-and-Earn initiative preparing students for leadership in an AI-shaped economy." },

@@ -6,7 +6,7 @@ import festival from "@/assets/festival.jpg";
 export const Route = createFileRoute("/festival")({
   head: () => ({
     meta: [
-      { title: "Riverfront Soul Festival 2026 — Jenesis CDC" },
+      { title: "Riverfront Soul Festival 2026 | Jenesis CDC" },
       { name: "description", content: "September 12–13, 2026 in Franklin, Virginia. Where culture meets community transformation." },
       { property: "og:title", content: "Riverfront Soul Festival 2026" },
       { property: "og:description", content: "An intergenerational cultural experience activating community connection, economic growth, and cultural preservation." },
