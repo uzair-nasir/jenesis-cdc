@@ -139,12 +139,7 @@
     color: var(--burgundy);
   }
 
-  .rule {
-    height: 1px;
-    width: 48px;
-    background: var(--burgundy);
-    display: inline-block;
-  }
+
 
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold tracking-wide transition-colors;
