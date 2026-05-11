@@ -82,9 +82,9 @@ function EventsPage() {
         <div className="container-edge grid gap-8 md:grid-cols-2">
           {events.map((e, i) => (
             <Reveal key={e.title} delay={(i % 2) * 100}>
-              <article className="group rounded-xl overflow-hidden border bg-card transition-shadow duration-300 hover:shadow-[0_18px_40px_-22px_oklch(0.2_0.05_17/0.35)] h-full flex flex-col" style={{ borderColor: "var(--border)" }}>
+              <article className="rounded-lg overflow-hidden border bg-card transition-colors hover:border-primary h-full flex flex-col" style={{ borderColor: "var(--border)" }}>
                 <div className="aspect-[16/9] overflow-hidden">
-                  <img src={e.img} alt={e.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" loading="lazy" />
+                  <img src={e.img} alt={e.title} className="h-full w-full object-cover" loading="lazy" />
                 </div>
                 <div className="p-7 flex-1 flex flex-col">
                   <div className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "var(--burgundy)" }}>
