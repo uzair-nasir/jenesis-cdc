@@ -12,11 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as FestivalRouteImport } from './routes/festival'
 import { Route as EventsRouteImport } from './routes/events'
-import { Route as DatagenScholarRouteImport } from './routes/datagen-scholar'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CoalitionRouteImport } from './routes/coalition'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
@@ -31,11 +31,6 @@ const FestivalRoute = FestivalRouteImport.update({
 const EventsRoute = EventsRouteImport.update({
   id: '/events',
   path: '/events',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DatagenScholarRoute = DatagenScholarRouteImport.update({
-  id: '/datagen-scholar',
-  path: '/datagen-scholar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -58,26 +53,31 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coalition': typeof CoalitionRoute
   '/contact': typeof ContactRoute
-  '/datagen-scholar': typeof DatagenScholarRoute
   '/events': typeof EventsRoute
   '/festival': typeof FestivalRoute
   '/programs': typeof ProgramsRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coalition': typeof CoalitionRoute
   '/contact': typeof ContactRoute
-  '/datagen-scholar': typeof DatagenScholarRoute
   '/events': typeof EventsRoute
   '/festival': typeof FestivalRoute
   '/programs': typeof ProgramsRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -85,10 +85,10 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/coalition': typeof CoalitionRoute
   '/contact': typeof ContactRoute
-  '/datagen-scholar': typeof DatagenScholarRoute
   '/events': typeof EventsRoute
   '/festival': typeof FestivalRoute
   '/programs': typeof ProgramsRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -97,30 +97,30 @@ export interface FileRouteTypes {
     | '/about'
     | '/coalition'
     | '/contact'
-    | '/datagen-scholar'
     | '/events'
     | '/festival'
     | '/programs'
+    | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/coalition'
     | '/contact'
-    | '/datagen-scholar'
     | '/events'
     | '/festival'
     | '/programs'
+    | '/api/chat'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/coalition'
     | '/contact'
-    | '/datagen-scholar'
     | '/events'
     | '/festival'
     | '/programs'
+    | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -128,10 +128,10 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CoalitionRoute: typeof CoalitionRoute
   ContactRoute: typeof ContactRoute
-  DatagenScholarRoute: typeof DatagenScholarRoute
   EventsRoute: typeof EventsRoute
   FestivalRoute: typeof FestivalRoute
   ProgramsRoute: typeof ProgramsRoute
+  ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -155,13 +155,6 @@ declare module '@tanstack/react-router' {
       path: '/events'
       fullPath: '/events'
       preLoaderRoute: typeof EventsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/datagen-scholar': {
-      id: '/datagen-scholar'
-      path: '/datagen-scholar'
-      fullPath: '/datagen-scholar'
-      preLoaderRoute: typeof DatagenScholarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -192,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -200,11 +200,21 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CoalitionRoute: CoalitionRoute,
   ContactRoute: ContactRoute,
-  DatagenScholarRoute: DatagenScholarRoute,
   EventsRoute: EventsRoute,
   FestivalRoute: FestivalRoute,
   ProgramsRoute: ProgramsRoute,
+  ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

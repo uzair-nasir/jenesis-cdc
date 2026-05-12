@@ -16,7 +16,6 @@ const nav: NavItem[] = [
       { label: "Who We Are", to: "/about" },
       { label: "Mission & Vision", to: "/about", hash: "mission" },
       { label: "Who We Serve", to: "/about", hash: "served" },
-      { label: "DataGen Scholar", to: "/datagen-scholar" },
     ],
   },
   {
