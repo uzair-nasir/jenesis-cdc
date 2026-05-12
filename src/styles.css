@@ -127,6 +127,11 @@
   }
 }
 
+@keyframes jg-blink {
+  0%, 80%, 100% { opacity: 0.25; }
+  40% { opacity: 1; }
+}
+
 @layer components {
   .container-edge { @apply mx-auto w-full max-w-[1240px] px-6 md:px-10; }
 
