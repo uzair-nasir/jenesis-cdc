@@ -75,16 +75,16 @@ function ContactPage() {
       return;
     }
     setErrors({});
-    const subject = `[Jenesis CDC] ${result.data.interest} – ${result.data.name}`;
+    const subject = `Jenesis CDC Website Inquiry - ${result.data.interest}`;
     const bodyLines = [
       `Name: ${result.data.name}`,
       `Email: ${result.data.email}`,
-      result.data.organization ? `Organization: ${result.data.organization}` : "",
+      `Organization: ${result.data.organization || "(not provided)"}`,
       `Interest: ${result.data.interest}`,
       "",
       "Message:",
       result.data.message,
-    ].filter(Boolean);
+    ];
     const mailto = `mailto:jenesiscdc@gmail.com?subject=${encodeURIComponent(
       subject,
     )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
@@ -109,11 +109,10 @@ function ContactPage() {
                 style={{ borderColor: "var(--border)", background: "var(--sand)" }}
               >
                 <h2 className="text-2xl" style={{ fontFamily: "var(--font-display)" }}>
-                  Thank you.
+                  Your email is ready to send.
                 </h2>
                 <p className="mt-3 text-muted-foreground">
-                  Your email client should now be open with your message ready to send. If
-                  nothing opened, please email us directly at{" "}
+                  We opened your default email app with your message addressed to{" "}
                   <a
                     href="mailto:jenesiscdc@gmail.com"
                     className="underline"
@@ -121,7 +120,8 @@ function ContactPage() {
                   >
                     jenesiscdc@gmail.com
                   </a>
-                  .
+                  . Press Send in your email app to deliver it. Your message has not been sent yet
+                  from this page.
                 </p>
                 <button
                   type="button"
@@ -208,10 +208,10 @@ function ContactPage() {
                 </div>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                   <button type="submit" className="btn-primary w-full sm:w-auto">
-                    Open Email to Send
+                    Open Email to Send Message
                   </button>
                   <p className="text-xs text-muted-foreground">
-                    This will open your default email client addressed to jenesiscdc@gmail.com.
+                    Messages are sent to jenesiscdc@gmail.com.
                   </p>
                 </div>
               </form>
