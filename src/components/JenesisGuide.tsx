@@ -9,6 +9,9 @@ const GREETING =
 const FALLBACK_UNKNOWN =
   "I may not have that information yet. Please contact Jenesis CDC directly at jenesiscdc@gmail.com.";
 
+const LS_MINIMIZED = "jenesis-guide:minimized";
+const LS_PREVIEW_DISMISSED = "jenesis-guide:preview-dismissed";
+
 function localAnswer(qRaw: string): string {
   const q = qRaw.toLowerCase();
   const has = (...keys: string[]) => keys.some((k) => q.includes(k));
@@ -63,12 +66,25 @@ function localAnswer(qRaw: string): string {
 
 export function JenesisGuide() {
   const [open, setOpen] = useState(false);
-  const [showPreview, setShowPreview] = useState(true);
+  const [minimized, setMinimized] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Msg[]>([{ role: "assistant", content: GREETING }]);
   const [thinking, setThinking] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Hydrate from localStorage
+  useEffect(() => {
+    try {
+      setMinimized(localStorage.getItem(LS_MINIMIZED) === "1");
+      setShowPreview(localStorage.getItem(LS_PREVIEW_DISMISSED) !== "1");
+    } catch {
+      setShowPreview(true);
+    }
+    setHydrated(true);
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -77,9 +93,37 @@ export function JenesisGuide() {
   useEffect(() => {
     if (open) {
       inputRef.current?.focus();
-      setShowPreview(false);
+      dismissPreview();
     }
   }, [open]);
+
+  const dismissPreview = () => {
+    setShowPreview(false);
+    try {
+      localStorage.setItem(LS_PREVIEW_DISMISSED, "1");
+    } catch {
+      // ignore
+    }
+  };
+
+  const setMinimizedPersist = (v: boolean) => {
+    setMinimized(v);
+    try {
+      localStorage.setItem(LS_MINIMIZED, v ? "1" : "0");
+    } catch {
+      // ignore
+    }
+  };
+
+  const handleMinimize = () => {
+    setOpen(false);
+    setMinimizedPersist(true);
+    dismissPreview();
+  };
+
+  const handleExpand = () => {
+    setMinimizedPersist(false);
+  };
 
   const send = async () => {
     const text = input.trim();
@@ -104,7 +148,7 @@ export function JenesisGuide() {
         reply = (data.reply || "").trim();
       }
     } catch {
-      // network error -> fall through to local
+      // ignore
     }
 
     if (!reply) reply = localAnswer(text);
@@ -119,12 +163,44 @@ export function JenesisGuide() {
     setThinking(false);
   };
 
+  if (!hydrated) return null;
+
+  const launcherBottom = "calc(env(safe-area-inset-bottom, 0px) + 100px)";
+
   return (
     <>
-      {!open && (
+      {/* Collapsed side tab */}
+      {!open && minimized && (
+        <button
+          onClick={() => {
+            handleExpand();
+            setOpen(true);
+          }}
+          aria-label="Open Jenesis Guide"
+          className="fixed z-50 right-0 inline-flex items-center gap-2 rounded-l-md pl-3 pr-3 py-2 shadow-md border border-r-0 transition-colors"
+          style={{
+            background: "var(--burgundy)",
+            color: "var(--ivory)",
+            borderColor: "var(--gold)",
+            bottom: launcherBottom,
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.background = "var(--burgundy-deep)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.background = "var(--burgundy)";
+          }}
+        >
+          <MessageCircle className="h-4 w-4" />
+          <span className="text-xs font-semibold tracking-wide">Guide</span>
+        </button>
+      )}
+
+      {/* Expanded launcher */}
+      {!open && !minimized && (
         <div
           className="fixed z-50 right-4 sm:right-6 flex flex-col items-end gap-2"
-          style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 96px)" }}
+          style={{ bottom: launcherBottom }}
         >
           {showPreview && (
             <div
@@ -139,10 +215,7 @@ export function JenesisGuide() {
                 Questions about programs, sponsorship, or getting involved?
               </span>
               <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowPreview(false);
-                }}
+                onClick={dismissPreview}
                 aria-label="Dismiss preview"
                 className="shrink-0 -mr-1 -mt-0.5 p-1 text-muted-foreground hover:text-foreground"
               >
@@ -151,48 +224,66 @@ export function JenesisGuide() {
             </div>
           )}
 
-          <button
-            onClick={() => setOpen(true)}
-            aria-label="Open Jenesis Guide chat"
-            className="group inline-flex items-center gap-3 rounded-full pl-3 pr-5 py-2.5 shadow-lg border transition-colors"
-            style={{
-              background: "var(--burgundy)",
-              color: "var(--ivory)",
-              borderColor: "var(--gold)",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background = "var(--burgundy-deep)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background = "var(--burgundy)";
-            }}
-          >
-            <span
-              className="flex h-8 w-8 items-center justify-center rounded-full"
-              style={{ background: "oklch(1 0 0 / 0.12)" }}
+          <div className="relative">
+            <button
+              onClick={() => setOpen(true)}
+              aria-label="Open Jenesis Guide chat"
+              className="inline-flex items-center gap-3 rounded-full pl-3 pr-5 py-2.5 shadow-lg border transition-colors"
+              style={{
+                background: "var(--burgundy)",
+                color: "var(--ivory)",
+                borderColor: "var(--gold)",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.background = "var(--burgundy-deep)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.background = "var(--burgundy)";
+              }}
             >
-              <MessageCircle className="h-4 w-4" style={{ color: "var(--ivory)" }} />
-            </span>
-            <span className="flex flex-col items-start leading-tight text-left">
-              <span className="text-sm font-semibold">Ask Jenesis Guide</span>
               <span
-                className="hidden md:block text-[10.5px] tracking-wide"
-                style={{ color: "oklch(1 0 0 / 0.7)" }}
+                className="flex h-8 w-8 items-center justify-center rounded-full"
+                style={{ background: "oklch(1 0 0 / 0.12)" }}
               >
-                Programs · Coalition · Festival
+                <MessageCircle className="h-4 w-4" style={{ color: "var(--ivory)" }} />
               </span>
-            </span>
-          </button>
+              <span className="flex flex-col items-start leading-tight text-left">
+                <span className="text-sm font-semibold">Ask Jenesis Guide</span>
+                <span
+                  className="hidden md:block text-[10.5px] tracking-wide"
+                  style={{ color: "oklch(1 0 0 / 0.7)" }}
+                >
+                  Programs · Coalition · Festival
+                </span>
+              </span>
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleMinimize();
+              }}
+              aria-label="Minimize Jenesis Guide"
+              className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full border shadow-sm transition-colors"
+              style={{
+                background: "var(--ivory)",
+                borderColor: "var(--border)",
+                color: "var(--charcoal)",
+              }}
+            >
+              <X className="h-3 w-3" />
+            </button>
+          </div>
         </div>
       )}
 
+      {/* Open chat panel */}
       {open && (
         <div
           className="fixed z-50 flex flex-col overflow-hidden border shadow-2xl right-3 left-3 sm:left-auto sm:right-6 rounded-lg sm:w-[370px]"
           style={{
             background: "var(--ivory)",
             borderColor: "var(--border)",
-            bottom: "calc(env(safe-area-inset-bottom, 0px) + 96px)",
+            bottom: launcherBottom,
             maxHeight: "min(78vh, 560px)",
           }}
           role="dialog"
@@ -222,8 +313,8 @@ export function JenesisGuide() {
               </div>
             </div>
             <button
-              onClick={() => setOpen(false)}
-              aria-label="Close chat"
+              onClick={handleMinimize}
+              aria-label="Minimize chat"
               className="text-ivory/80 hover:text-gold p-1 -mr-1"
             >
               <X className="h-4 w-4" />
