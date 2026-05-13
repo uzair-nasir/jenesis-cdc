@@ -208,10 +208,10 @@ function ContactPage() {
                 </div>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                   <button type="submit" className="btn-primary w-full sm:w-auto">
-                    Open Email to Send
+                    Open Email to Send Message
                   </button>
                   <p className="text-xs text-muted-foreground">
-                    This will open your default email client addressed to jenesiscdc@gmail.com.
+                    Messages are sent to jenesiscdc@gmail.com.
                   </p>
                 </div>
               </form>
