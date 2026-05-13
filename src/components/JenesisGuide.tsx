@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { MessageCircle, X } from "lucide-react";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -62,6 +63,7 @@ function localAnswer(qRaw: string): string {
 
 export function JenesisGuide() {
   const [open, setOpen] = useState(false);
+  const [showPreview, setShowPreview] = useState(true);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Msg[]>([{ role: "assistant", content: GREETING }]);
   const [thinking, setThinking] = useState(false);
@@ -73,7 +75,10 @@ export function JenesisGuide() {
   }, [messages, open, thinking]);
 
   useEffect(() => {
-    if (open) inputRef.current?.focus();
+    if (open) {
+      inputRef.current?.focus();
+      setShowPreview(false);
+    }
   }, [open]);
 
   const send = async () => {
@@ -105,7 +110,7 @@ export function JenesisGuide() {
     if (!reply) reply = localAnswer(text);
 
     const elapsed = Date.now() - startedAt;
-    const minDelay = 700;
+    const minDelay = 800;
     if (elapsed < minDelay) {
       await new Promise((r) => setTimeout(r, minDelay - elapsed));
     }
@@ -117,23 +122,78 @@ export function JenesisGuide() {
   return (
     <>
       {!open && (
-        <button
-          onClick={() => setOpen(true)}
-          aria-label="Open Jenesis Guide chat"
-          className="fixed bottom-5 right-5 z-50 rounded-full px-5 py-3 text-sm font-semibold shadow-lg"
-          style={{ background: "var(--burgundy)", color: "var(--ivory)" }}
+        <div
+          className="fixed z-50 right-4 sm:right-6 flex flex-col items-end gap-2"
+          style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 96px)" }}
         >
-          Ask Jenesis Guide
-        </button>
+          {showPreview && (
+            <div
+              className="hidden md:flex items-start gap-2 max-w-[280px] rounded-lg border px-3.5 py-2.5 text-sm shadow-md"
+              style={{
+                background: "var(--ivory)",
+                borderColor: "var(--border)",
+                color: "var(--foreground)",
+              }}
+            >
+              <span className="leading-snug">
+                Questions about programs, sponsorship, or getting involved?
+              </span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowPreview(false);
+                }}
+                aria-label="Dismiss preview"
+                className="shrink-0 -mr-1 -mt-0.5 p-1 text-muted-foreground hover:text-foreground"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
+          )}
+
+          <button
+            onClick={() => setOpen(true)}
+            aria-label="Open Jenesis Guide chat"
+            className="group inline-flex items-center gap-3 rounded-full pl-3 pr-5 py-2.5 shadow-lg border transition-colors"
+            style={{
+              background: "var(--burgundy)",
+              color: "var(--ivory)",
+              borderColor: "var(--gold)",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.background = "var(--burgundy-deep)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.background = "var(--burgundy)";
+            }}
+          >
+            <span
+              className="flex h-8 w-8 items-center justify-center rounded-full"
+              style={{ background: "oklch(1 0 0 / 0.12)" }}
+            >
+              <MessageCircle className="h-4 w-4" style={{ color: "var(--ivory)" }} />
+            </span>
+            <span className="flex flex-col items-start leading-tight text-left">
+              <span className="text-sm font-semibold">Ask Jenesis Guide</span>
+              <span
+                className="hidden md:block text-[10.5px] tracking-wide"
+                style={{ color: "oklch(1 0 0 / 0.7)" }}
+              >
+                Programs · Coalition · Festival
+              </span>
+            </span>
+          </button>
+        </div>
       )}
 
       {open && (
         <div
-          className="fixed z-50 flex flex-col overflow-hidden border shadow-2xl bottom-3 right-3 left-3 sm:left-auto sm:bottom-5 sm:right-5 rounded-lg sm:w-[360px]"
+          className="fixed z-50 flex flex-col overflow-hidden border shadow-2xl right-3 left-3 sm:left-auto sm:right-6 rounded-lg sm:w-[370px]"
           style={{
             background: "var(--ivory)",
             borderColor: "var(--border)",
-            maxHeight: "min(85vh, 580px)",
+            bottom: "calc(env(safe-area-inset-bottom, 0px) + 96px)",
+            maxHeight: "min(78vh, 560px)",
           }}
           role="dialog"
           aria-label="Jenesis Guide"
@@ -142,20 +202,31 @@ export function JenesisGuide() {
             className="flex items-start justify-between px-5 py-4"
             style={{ background: "var(--burgundy)", color: "var(--ivory)" }}
           >
-            <div>
-              <div className="text-base font-semibold" style={{ fontFamily: "var(--font-display)" }}>
-                Jenesis Guide
-              </div>
-              <div className="text-[11px] tracking-wide text-ivory/75">
-                Community information assistant
+            <div className="flex items-center gap-3">
+              <span
+                className="flex h-8 w-8 items-center justify-center rounded-full"
+                style={{ background: "oklch(1 0 0 / 0.12)" }}
+              >
+                <MessageCircle className="h-4 w-4" />
+              </span>
+              <div>
+                <div
+                  className="text-base font-semibold leading-tight"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Jenesis Guide
+                </div>
+                <div className="text-[11px] tracking-wide" style={{ color: "oklch(1 0 0 / 0.7)" }}>
+                  Community information assistant
+                </div>
               </div>
             </div>
             <button
               onClick={() => setOpen(false)}
               aria-label="Close chat"
-              className="text-ivory/80 hover:text-gold text-xl leading-none px-1"
+              className="text-ivory/80 hover:text-gold p-1 -mr-1"
             >
-              ×
+              <X className="h-4 w-4" />
             </button>
           </div>
 
@@ -167,7 +238,7 @@ export function JenesisGuide() {
             {messages.map((m, i) => (
               <div
                 key={i}
-                className={`max-w-[88%] rounded-md px-3 py-2 text-sm leading-snug whitespace-pre-wrap ${
+                className={`max-w-[88%] rounded-lg px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${
                   m.role === "user" ? "ml-auto" : ""
                 }`}
                 style={
@@ -185,7 +256,7 @@ export function JenesisGuide() {
             ))}
             {thinking && (
               <div
-                className="max-w-[60%] rounded-md px-3 py-2 text-sm flex items-center gap-1.5"
+                className="max-w-[60%] rounded-lg px-3.5 py-2.5 text-sm flex items-center gap-1.5"
                 style={{
                   background: "var(--ivory)",
                   color: "var(--muted-foreground)",
