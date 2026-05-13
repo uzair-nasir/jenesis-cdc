@@ -149,7 +149,11 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:flex items-center">
-          <Link to="/coalition" className="btn-primary !py-2.5 !px-4 text-[13px]">
+          <Link
+            to="/contact"
+            search={{ interest: "Coalition Partner" } as never}
+            className="btn-primary !py-2.5 !px-4 text-[13px]"
+          >
             Join the Coalition
           </Link>
         </div>
