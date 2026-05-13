@@ -75,16 +75,16 @@ function ContactPage() {
       return;
     }
     setErrors({});
-    const subject = `[Jenesis CDC] ${result.data.interest} – ${result.data.name}`;
+    const subject = `Jenesis CDC Website Inquiry - ${result.data.interest}`;
     const bodyLines = [
       `Name: ${result.data.name}`,
       `Email: ${result.data.email}`,
-      result.data.organization ? `Organization: ${result.data.organization}` : "",
+      `Organization: ${result.data.organization || "(not provided)"}`,
       `Interest: ${result.data.interest}`,
       "",
       "Message:",
       result.data.message,
-    ].filter(Boolean);
+    ];
     const mailto = `mailto:jenesiscdc@gmail.com?subject=${encodeURIComponent(
       subject,
     )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
