@@ -109,11 +109,10 @@ function ContactPage() {
                 style={{ borderColor: "var(--border)", background: "var(--sand)" }}
               >
                 <h2 className="text-2xl" style={{ fontFamily: "var(--font-display)" }}>
-                  Thank you.
+                  Your email is ready to send.
                 </h2>
                 <p className="mt-3 text-muted-foreground">
-                  Your email client should now be open with your message ready to send. If
-                  nothing opened, please email us directly at{" "}
+                  We opened your default email app with your message addressed to{" "}
                   <a
                     href="mailto:jenesiscdc@gmail.com"
                     className="underline"
@@ -121,7 +120,8 @@ function ContactPage() {
                   >
                     jenesiscdc@gmail.com
                   </a>
-                  .
+                  . Press Send in your email app to deliver it. Your message has not been sent yet
+                  from this page.
                 </p>
                 <button
                   type="button"
