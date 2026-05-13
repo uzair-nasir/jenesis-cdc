@@ -203,7 +203,13 @@ export function Navbar() {
               </div>
             ))}
             <div className="pt-3">
-              <Link to="/coalition" className="btn-primary w-full">Join the Coalition</Link>
+              <Link
+                to="/contact"
+                search={{ interest: "Coalition Partner" } as never}
+                className="btn-primary w-full"
+              >
+                Join the Coalition
+              </Link>
             </div>
           </div>
         </div>
