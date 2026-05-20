@@ -7,7 +7,7 @@ export function Footer() {
       <div className="container-edge py-16 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
-            <img
+            
               src={logo}
               alt="Jenesis CDC"
               width={48}
